@@ -1,35 +1,32 @@
 class Processo:
-    def __init__(self, nome, tempoExecucao,prioridade):
+    def __init__(self, nome, tempoExecucao, prioridade):
         self.nome = nome
         self.tempoExecucao = tempoExecucao
         self.prioridade = prioridade
 
-#FIST COME FIST SERVED
+# FIRST COME FIRST SERVED
 def fcfs(lista):
     return lista.pop(0)
 
-#SHORTES JOB FIRST
+# SHORTEST JOB FIRST
 def sjf(lista):
     lista.sort(key=lambda x: x.tempoExecucao)
     return lista.pop(0)
 
-#PRIORITY SCHEDULING
+# PRIORITY SCHEDULING
 def ps(lista):
     lista.sort(key=lambda x: x.prioridade)
     return lista.pop(0)
 
-#ROUND ROBIN SCHEDULING
-def rr(lista,quantum):
+# ROUND ROBIN SCHEDULING
+def rr(lista, quantum):
     processo = lista.pop(0)
     if processo.tempoExecucao > quantum:
         processo.tempoExecucao -= quantum
         lista.append(processo)
-        return processo
-    else:
-        return processo    
+    return processo
 
 processos = [
-    #nome tempo prioridade
     Processo("P1", 10, 2),
     Processo("P2", 6, 1),
     Processo("P3", 9, 3),
@@ -38,16 +35,14 @@ processos = [
 
 while True:
     op = input("Escolha entre os Algoritmos (FCFS, SJF, PS, RR): ").upper()
-    if op in ["FCFS","SJF","PS","RR"]:
+    if op in ["FCFS", "SJF", "PS", "RR"]:
         break
-    print("Algorito não suportado")
-        
+    print("Algoritmo não suportado")
 
 if op == "RR":
     quantum = int(input("Digite o quantum para o escalonamento RR: "))
 else:
     quantum = None
-
 
 filaDeProcessos = processos.copy()
 while filaDeProcessos:
@@ -58,13 +53,10 @@ while filaDeProcessos:
     elif op == "PS":
         atual = ps(filaDeProcessos)
     elif op == "RR":
-        atual = rr(filaDeProcessos,quantum)        
+        atual = rr(filaDeProcessos, quantum)
 
-    print("Executando "+ atual.nome)
+    print("Executando " + atual.nome)
     atual.tempoExecucao -= 1
 
     if atual.tempoExecucao > 0:
         filaDeProcessos.append(atual)
-
-
-
