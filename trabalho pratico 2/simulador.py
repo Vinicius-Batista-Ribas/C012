@@ -56,7 +56,3 @@ while filaDeProcessos:
         atual = rr(filaDeProcessos, quantum)
 
     print("Executando " + atual.nome)
-    atual.tempoExecucao -= 1
-
-    if atual.tempoExecucao > 0:
-        filaDeProcessos.append(atual)
