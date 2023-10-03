@@ -3,6 +3,7 @@ class Processo:
         self.nome = nome
         self.tempoExecucao = tempoExecucao
         self.prioridade = prioridade
+        self.tempoEspera = 0
 
 # FIRST COME FIRST SERVED
 def fcfs(lista):
@@ -44,6 +45,8 @@ if op == "RR":
 else:
     quantum = None
 
+esperaTotal = 0 
+
 filaDeProcessos = processos.copy()
 while filaDeProcessos:
     if op == "FCFS":
@@ -56,7 +59,13 @@ while filaDeProcessos:
         atual = rr(filaDeProcessos, quantum)
 
     print("Executando " + atual.nome)
-    atual.tempoExecucao -= 1
 
-    if atual.tempoExecucao > 0:
-        filaDeProcessos.append(atual)
+    for processo in filaDeProcessos:
+        processo.tempoEspera += atual.tempoExecucao
+
+    # Adicione o tempo de espera atual ao tempo total de espera
+    esperaTotal += atual.tempoEspera
+
+# Calcule o tempo médio de espera
+tempoMedio = esperaTotal / len(processos)
+print("Tempo médio de espera:", tempoMedio)
