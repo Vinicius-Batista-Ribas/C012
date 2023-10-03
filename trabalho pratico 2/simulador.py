@@ -28,10 +28,11 @@ def rr(lista, quantum):
     return processo
 
 processos = [
-    Processo("P1", 10, 2),
-    Processo("P2", 6, 1),
-    Processo("P3", 9, 3),
-    Processo("P4", 3, 4)
+    Processo("P1", 24, 2),
+    Processo("P2", 3, 1),
+    Processo("P3", 3, 3),
+   # Processo("P4", 1, 4),
+  #  Processo("P5", 5, 4)
 ]
 
 while True:
@@ -59,13 +60,3 @@ while filaDeProcessos:
         atual = rr(filaDeProcessos, quantum)
 
     print("Executando " + atual.nome)
-
-    for processo in filaDeProcessos:
-        processo.tempoEspera += atual.tempoExecucao
-
-    # Adicione o tempo de espera atual ao tempo total de espera
-    esperaTotal += atual.tempoEspera
-
-# Calcule o tempo médio de espera
-tempoMedio = esperaTotal / len(processos)
-print("Tempo médio de espera:", tempoMedio)
