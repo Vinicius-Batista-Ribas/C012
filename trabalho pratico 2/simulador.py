@@ -59,7 +59,6 @@ while filaDeProcessos:
         atual = rr(filaDeProcessos, quantum)
 
     print("Executando " + atual.nome)
-<<<<<<< HEAD
 
     for processo in filaDeProcessos:
         processo.tempoEspera += atual.tempoExecucao
@@ -70,5 +69,3 @@ while filaDeProcessos:
 # Calcule o tempo médio de espera
 tempoMedio = esperaTotal / len(processos)
 print("Tempo médio de espera:", tempoMedio)
-=======
->>>>>>> e83bc0a4b03cf7aa7dd7404e55b629e97cabf83b
